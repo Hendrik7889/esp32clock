@@ -15,11 +15,13 @@ This project implements a text-based clock on the ESP32S2 microcontroller using 
 
 - ESP32 microcontroller.
 - Appropriate power supply for the ESP32.
-- Leds
+- Leds (at least 22)
 - Breadboard
-- Resistors
+- Resistors (at least 22)
 - The wallmount is custom
 - USB-to-Serial converter (for initial setup and debugging).
+
+if you bought a non developer esp32 you might need a USB to TTL Serial Adapter Module.
 
 ## Getting Started
 
@@ -32,6 +34,7 @@ This project implements a text-based clock on the ESP32S2 microcontroller using 
 
    - Connect your ESP32 with the resistors and leds (see picture below).
    - Connect the necessary power supply.
+   ![IO-Port-English](https://github.com/Hendrik7889/esp32clock/main/design-and-ports/led_connection.png)
 
 3. **Configure the Clock**
 
@@ -43,19 +46,24 @@ This project implements a text-based clock on the ESP32S2 microcontroller using 
 
    - Select the appropriate ESP32 board and COM port.
    - Click "Upload" to flash the code to your ESP32.
-   - Open the serial monitor or activate your chosen display to view the text-based clock.
+   - if you bought a non developer esp32 you might need a USB to TTL Serial Adapter Module.
+   
 
 ## Configuration
 
 In the sketch, you can customize the following options:
 
-- **Time Format:** Choose between 12-hour and 24-hour time formats.
-- **Display Output:** Select the type of display output (serial terminal, OLED display, etc.).
+- **Language:** Customize the board in your own language. 
 - **Time Zone:** Set your desired time zone for accurate timekeeping.
+
+  ![IO-Port-English](https://github.com/Hendrik7889/esp32clock/main/design-and-ports/IO-Ports-English.png)
+
+[branch]/image.jpg?raw=true)
 
 ## Troubleshooting
 
-- If you encounter issues during setup or operation, consult the troubleshooting section in the sketch or refer to the project's documentation.
+- If you encounter issues during setup or operation your esp32 might not be compatable or you didnt wire up correctly.
+- Check also if a simple blink flash works :)
 
 ## Contributors
 
