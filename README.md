@@ -34,7 +34,7 @@ if you bought a non developer esp32 you might need a USB to TTL Serial Adapter M
 
    - Connect your ESP32 with the resistors and leds (see picture below).
    - Connect the necessary power supply.
-   ![IO-Port-English](https://github.com/Hendrik7889/esp32clock/main/design-and-ports/led_connection.png)
+   ![IO-Port-English](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/led_connection.png)
 
 3. **Configure the Clock**
 
@@ -56,7 +56,7 @@ In the sketch, you can customize the following options:
 - **Language:** Customize the board in your own language. 
 - **Time Zone:** Set your desired time zone for accurate timekeeping.
 
-  ![IO-Port-English](https://github.com/Hendrik7889/esp32clock/main/design-and-ports/IO-Ports-English.png)
+  ![IO-Port-English](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/IO-Ports-English.png)
 
 [branch]/image.jpg?raw=true)
 
