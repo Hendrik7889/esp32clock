@@ -2,20 +2,11 @@
 #include <NTPClient.h>
 #include <WiFiUdp.h>
 #include "config.h"
-// Replace with your network credentials
-
-const char* ssid = "YOUR WIFI NAME";
-const char* password = "YOUR WIFI PASSWORD";
 
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP);
 
-void setup() {
-  initWiFi();
-  timeClient.begin();
-  timeClient.setTimeOffset(7200); //utc 
-                                  //+3600 if +1hour -3600 if -1hour 
-
+void setup(){
   pinMode(1, OUTPUT);
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
@@ -37,28 +28,47 @@ void setup() {
   pinMode(19, OUTPUT);
   pinMode(20, OUTPUT);
   pinMode(21, OUTPUT);
-  pinMode(26, OUTPUT);
+  pinMode(33, OUTPUT);
+  Serial.begin(115200);
+
+  WiFi.begin(ssid, password);
+  //connect to wifi
+  while ( WiFi.status() != WL_CONNECTED ) {
+    delay ( 500 );
+    print ( "." );
   }
+  println("");
+
+  //init NTP CLient
+  timeClient.begin();
+  timeClient.setTimeOffset(timeOffset); //+3600 if +1hour -3600 if -1hour 
+}
 
 void loop() {
-  while(!timeClient.update()) {
-    timeClient.forceUpdate();
-  }
+  int zMinutes=0;
+  int zHours=12;
+  timeClient.update();
 
-  int zMinutes = timeClient.getMinutes();
-  int zHours = timeClient.getHours()%12; //only 12 hour clocks are implemented because of canvas size
+  zHours= timeClient.getHours();
   
+  zMinutes = timeClient.getMinutes();
+
+
   if(zMinutes>=45){
-    zHours=zHours+1;//because then time is calculated in to 
+    zHours=zHours+1;      //because then time is calculated in *to*  
   }
 
-  if(zHours==0){  //we have no hour 0 only 12
+  if(zHours>=13){         // only hours until 12 allowed
+    zHours=(zHours % 12);
+  }
+
+  if(zHours==0){          //we have no hour 0 only 12
     zHours=12;
   }
 
-  digitalWrite(1, HIGH); //allways on this will be "IT"
-  digitalWrite(2, HIGH); //allways on this will be "IS"
-  digitalWrite(3, HIGH); //allways on this will be "O'CLOCK"
+  digitalWrite(1, HIGH); //always on this will be "IT"
+  digitalWrite(2, HIGH); //always on this will be "IS"
+  digitalWrite(3, HIGH); //always on this will be "O'CLOCK"
   
  
   switch(zHours){
@@ -101,36 +111,75 @@ void loop() {
   }
 
   switch(zMinutes){
-    case 0-4:     digitalWrite(21,LOW); digitalWrite(26,LOW); break; //display nothing 
-    case 5-29:    digitalWrite(26,HIGH);digitalWrite(21,LOW); break; //dispaly is past 
-    case 30-39:   digitalWrite(21,LOW); digitalWrite(26,LOW); break; //display nothing 
-    case 40-60:   digitalWrite(21,HIGH);digitalWrite(26,LOW); break; //display is to
-    default:      digitalWrite(21,LOW); digitalWrite(26,LOW); break; //display nothing  
+    case 0 ... 4:     digitalWrite(21,LOW); digitalWrite(33,LOW); break; //display nothing 
+    case 5 ... 29:    digitalWrite(33,HIGH);digitalWrite(21,LOW); break; //dispaly is past 
+    case 30 ... 39:   digitalWrite(21,LOW); digitalWrite(33,LOW); break; //display nothing 
+    case 40 ... 60:   digitalWrite(21,HIGH);digitalWrite(33,LOW); break; //display is to
+    default:          digitalWrite(21,LOW); digitalWrite(33,LOW); break; //display nothing  
   }
-
-    if(0<=zMinutes<=4)  { digitalWrite(16,LOW); digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW);} //display nothing
-    if(5<=zMinutes<=9)  { digitalWrite(16,HIGH);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW);}  //display 5
-    if(10<=zMinutes<=14){ digitalWrite(17,HIGH);digitalWrite(16,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW);}  //display 10
-    if(15<=zMinutes<=19){ digitalWrite(18,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW);}  //display 15
-    if(20<=zMinutes<=29){ digitalWrite(19,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(20,LOW);}  //display 20
-    if(30<=zMinutes<=39){ digitalWrite(20,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);}  //display 30
-    if(40<=zMinutes<=44){ digitalWrite(19,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(20,LOW);}  //display 20
-    if(45<=zMinutes<=49){ digitalWrite(18,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW);}  //diaplay 15
-    if(50<=zMinutes<=54){ digitalWrite(17,HIGH);digitalWrite(16,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW);}  //display 10
-    if(55<=zMinutes<=60){ digitalWrite(16,LOW); digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW);}  //display 5
-
-
+  switch(zMinutes){
+    case 0 ... 4:   digitalWrite(16,LOW); digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
+    case 5 ... 9:   digitalWrite(16,HIGH);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
+    case 10 ... 14: digitalWrite(17,HIGH);digitalWrite(16,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
+    case 15 ... 19: digitalWrite(18,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
+    case 20 ... 29: digitalWrite(19,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(20,LOW); break;
+    case 30 ... 39: digitalWrite(20,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW); break;
+    case 40 ... 44: digitalWrite(19,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(20,LOW); break;
+    case 45 ... 49: digitalWrite(18,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
+    case 50 ... 54: digitalWrite(17,HIGH);digitalWrite(16,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
+    default:        digitalWrite(16,LOW); digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
+  }
   
+  delay(1000);
+  print("zMinutes");
+  println(zMinutes);
+  print("zHours");
+  println(zHours);
+  delay(1000);
+  println("~~~~~");
 }
 
-
-void initWiFi() {
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
-  Serial.print("Connecting to WiFi ..");
-  while (WiFi.status() != WL_CONNECTED) {
-    Serial.print('.');
+/**
+  Function to controll the Output
+  */
+void print(char arr[]){
+  if(!debug){
+    return;
   }
-  Serial.println(WiFi.localIP());
+  Serial.print(arr);
 }
 
+void print(int integer){
+  if(!debug){
+    return;
+  }
+  Serial.print(integer);
+}
+
+void print(bool boolean){
+  if(!debug){
+    return;
+  }
+  Serial.print(boolean);
+}
+
+void println(char arr[]){
+  if(!debug){
+    return;
+  }
+  Serial.println(arr);
+}
+
+void println(int integer){
+  if(!debug){
+    return;
+  }
+  Serial.println(integer);
+}
+
+void println(bool boolean){
+  if(!debug){
+    return;
+  }
+  Serial.println(boolean);
+}
