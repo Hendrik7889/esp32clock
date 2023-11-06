@@ -1,10 +1,12 @@
 #include <WiFi.h>
+#include "time.h"
 #include <NTPClient.h>
 #include <WiFiUdp.h>
 #include "config.h"
 
-WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP);
+int zMinutes=0;
+int zHours=12;
+struct tm timeinfo;
 
 void setup(){
   pinMode(1, OUTPUT);
@@ -31,31 +33,35 @@ void setup(){
   pinMode(33, OUTPUT);
   Serial.begin(115200);
 
-  WiFi.begin(ssid, password);
+  WiFi.begin(ssid,password);
   //connect to wifi
-  while ( WiFi.status() != WL_CONNECTED ) {
-    delay ( 500 );
-    print ( "." );
+  while (WiFi.status() != WL_CONNECTED){
+    delay(500);
+    print(".");
   }
   println("");
+  println("Connected");
 
-  //init NTP CLient
-  timeClient.begin();
-  timeClient.setTimeOffset(timeOffset); //+3600 if +1hour -3600 if -1hour 
+  initTime(timeZoneString);
+
+  digitalWrite(1, HIGH); //always on this will be "IT"
+  digitalWrite(2, HIGH); //always on this will be "IS"
+  digitalWrite(3, HIGH); //always on this will be "O'CLOCK"
 }
 
 void loop() {
-  int zMinutes=0;
-  int zHours=12;
-  timeClient.update();
+  //updates time
+  if(!getLocalTime(&timeinfo)){
+    println("Failed to obtain time");
+    return;
+  }
+  printDate();
 
-  zHours= timeClient.getHours();
-  
-  zMinutes = timeClient.getMinutes();
+  zHours = timeinfo.tm_hour;
+  zMinutes = timeinfo.tm_min;
 
-
-  if(zMinutes>=45){
-    zHours=zHours+1;      //because then time is calculated in *to*  
+  if(zMinutes>=45){       //because then time is calculated in *to*
+    zHours=zHours+1;
   }
 
   if(zHours>=13){         // only hours until 12 allowed
@@ -65,12 +71,12 @@ void loop() {
   if(zHours==0){          //we have no hour 0 only 12
     zHours=12;
   }
-
-  digitalWrite(1, HIGH); //always on this will be "IT"
-  digitalWrite(2, HIGH); //always on this will be "IS"
-  digitalWrite(3, HIGH); //always on this will be "O'CLOCK"
+  print("Hours: ");
+  println(zHours);
+  print("Minutes: ");
+  println(zMinutes);
+  println("~~~");
   
- 
   switch(zHours){
     case 1:  digitalWrite(4 , HIGH);  digitalWrite(5, LOW);digitalWrite(6, LOW);digitalWrite(7, LOW);digitalWrite(8, LOW);digitalWrite(9, LOW);digitalWrite(10, LOW);
                                       digitalWrite(11, LOW);digitalWrite(12, LOW);digitalWrite(13, LOW); digitalWrite(14, LOW);digitalWrite(15, LOW);
@@ -117,6 +123,7 @@ void loop() {
     case 40 ... 60:   digitalWrite(21,HIGH);digitalWrite(33,LOW); break; //display is to
     default:          digitalWrite(21,LOW); digitalWrite(33,LOW); break; //display nothing  
   }
+
   switch(zMinutes){
     case 0 ... 4:   digitalWrite(16,LOW); digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
     case 5 ... 9:   digitalWrite(16,HIGH);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
@@ -129,57 +136,72 @@ void loop() {
     case 50 ... 54: digitalWrite(17,HIGH);digitalWrite(16,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
     default:        digitalWrite(16,LOW); digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
   }
-  
-  delay(1000);
-  print("zMinutes");
-  println(zMinutes);
-  print("zHours");
-  println(zHours);
-  delay(1000);
-  println("~~~~~");
+
+  print("delay:");
+  print((60-timeinfo.tm_sec+1));
+  println("sec");
+  delay((60-timeinfo.tm_sec+1)*1000);
+}
+
+/**
+  initiates the time 
+  @param timezone the String that specifies the timezone and the daylight savings
+  look config.h
+  */
+void initTime(String timezone){
+  println("Setting up time");
+  configTime(0, 0, "pool.ntp.org");    // First connect to NTP server, with 0 TZ offset
+  if(!getLocalTime(&timeinfo)){
+    println("Failed to obtain time");
+    return;
+  }
+  println("Got the time from NTP");
+  // Now we can set the real timezone
+  setenv("TZ",timezone.c_str(),1);  //  Now adjust the TZ.  Clock settings are adjusted to show the new local time
+  tzset();
 }
 
 /**
   Function to controll the Output
   */
-void print(char arr[]){
-  if(!debug){
-    return;
+void printDate(){
+  if(debug){
+    Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S zone %Z %z ");
   }
-  Serial.print(arr);
+}
+
+void print(char arr[]){
+  if(debug){
+    Serial.print(arr);
+  }
 }
 
 void print(int integer){
-  if(!debug){
-    return;
+  if(debug){
+    Serial.print(integer);
   }
-  Serial.print(integer);
 }
 
 void print(bool boolean){
-  if(!debug){
-    return;
+  if(debug){
+    Serial.print(boolean);
   }
-  Serial.print(boolean);
 }
 
 void println(char arr[]){
-  if(!debug){
-    return;
-  }
-  Serial.println(arr);
+  if(debug){
+    Serial.println(arr);
+  } 
 }
 
 void println(int integer){
-  if(!debug){
-    return;
-  }
-  Serial.println(integer);
+  if(debug){
+    Serial.println(integer);
+  } 
 }
 
 void println(bool boolean){
-  if(!debug){
-    return;
+  if(debug){
+    Serial.println(boolean);
   }
-  Serial.println(boolean);
 }
