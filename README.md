@@ -40,7 +40,7 @@ if you bought a non developer esp32 you might need a USB to TTL Serial Adapter M
 
    - Open the Arduino IDE 2.
    - Load the provided sketch (`.ino` file) into the IDE.
-   - Configure the clock settings, such as time format and display options, in the sketch.
+   - Configure the clock settings in the config.h file.
 
 4. **Upload and Run**
 
@@ -65,19 +65,6 @@ In the sketch, you can customize the following options:
 - If you encounter issues during setup or operation your esp32 might not be compatable or you didnt wire up correctly.
 - Check also if a simple blink flash works :)
 
-## Contributors
-
-- Hendrik Brüning
-
-## License
-
-Use it like u want :)
-
 ## Acknowledgments
 
 - Inspiration drawn from QCLOCKTWO CLASSIC
-
-## Support
-
-For any questions, bug reports, or feature requests, please contact hendrikbruening@gmx.de.
-
