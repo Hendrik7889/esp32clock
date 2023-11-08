@@ -34,7 +34,7 @@ if you bought a non developer esp32 you might need a USB to TTL Serial Adapter M
 
    - Connect your ESP32 with the resistors and leds (see picture below).
    - Connect the necessary power supply.
-   ![IO-Port-English](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/led_connection.png)
+   - ![Led connection](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/led_connection.png) 
 
 3. **Configure the Clock**
 
@@ -42,28 +42,22 @@ if you bought a non developer esp32 you might need a USB to TTL Serial Adapter M
    - Load the provided sketch (`.ino` file) into the IDE.
    - Configure the clock settings in the config.h file.
 
-4. **Upload and Run**
+     ![Find your code here](https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv)
+
+4. **Configure the Panel**
+  
+   - ![Panel-English](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/IO-Ports-English.png) ![Panel-German](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/IO-Ports-German.png)
+  
+   - Automaticly generate your custom panel with this amazing project [https://github.com/im-pro-at/WordClockGenerator](https://github.com/im-pro-at/WordClockGenerator)
+
+     (not automated) you might need to change code in ![esp32.ino](https://github.com/Hendrik7889/esp32clock/blob/main/esp32clock/esp32clock.ino)
+
+5. **Upload and Run**
 
    - Select the appropriate ESP32 board and COM port.
    - Click "Upload" to flash the code to your ESP32.
    - if you bought a non developer esp32 you might need a USB to TTL Serial Adapter Module.
    
-
-## Configuration
-
-In the sketch, you can customize the following options:
-
-- **Language:** Customize the board in your own language. 
-- **Time Zone:** Set your desired time zone for accurate timekeeping.
-
-  ![IO-Port-English](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/IO-Ports-English.png)
-
-[branch]/image.jpg?raw=true)
-
-## Troubleshooting
-
-- If you encounter issues during setup or operation your esp32 might not be compatable or you didnt wire up correctly.
-- Check also if a simple blink flash works :)
 
 ## Acknowledgments
 
