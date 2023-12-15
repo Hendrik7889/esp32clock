@@ -2,8 +2,8 @@
   @param ssid is your WIFI name
   @param password is your wifi password
   */
-extern const char* ssid = "Wlan";
-extern const char* password = "Password";
+extern const char* ssid = "ssid";
+extern const char* password = "password";
 
 /**
   Option for debugging
@@ -20,5 +20,28 @@ extern bool debug = true;
 extern const char* timeZoneString = "CET-1CEST,M3.5.0,M10.5.0/3";
 
 /**
-  If you want to change ports you can do that manualy in the ino file
+  If you want to change ports you can do that here
   */
+ 
+#define IT       1
+#define IS       2
+#define CLOCK    3
+#define ONE      4
+#define TWO      5
+#define THREE    6
+#define FOUR     7
+#define FIVE     8
+#define SIX      9
+#define SEVEN    10
+#define EIGHT    11
+#define NINE     12
+#define TEN      13
+#define ELEVEN   14 
+#define TWELVE   15
+#define FIVE2    16
+#define TEN2     17
+#define QUARTER2 18
+#define TWENTY2  19
+#define HALF2    20
+#define TO       21
+#define PAST     33

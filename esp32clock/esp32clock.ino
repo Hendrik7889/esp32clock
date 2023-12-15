@@ -9,28 +9,28 @@ int zHours=12;
 struct tm timeinfo;
 
 void setup(){
-  pinMode(1, OUTPUT);
-  pinMode(2, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
-  pinMode(5, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(7, OUTPUT);
-  pinMode(8, OUTPUT);
-  pinMode(9, OUTPUT);
-  pinMode(10, OUTPUT);
-  pinMode(11, OUTPUT);
-  pinMode(12, OUTPUT);
-  pinMode(13, OUTPUT);
-  pinMode(14, OUTPUT);
-  pinMode(15, OUTPUT);
-  pinMode(16, OUTPUT);
-  pinMode(17, OUTPUT);
-  pinMode(18, OUTPUT);
-  pinMode(19, OUTPUT);
-  pinMode(20, OUTPUT);
-  pinMode(21, OUTPUT);
-  pinMode(33, OUTPUT);
+  pinMode(IT, OUTPUT);
+  pinMode(IS, OUTPUT);
+  pinMode(CLOCK, OUTPUT);
+  pinMode(ONE, OUTPUT);
+  pinMode(TWO, OUTPUT);
+  pinMode(THREE, OUTPUT);
+  pinMode(FOUR, OUTPUT);
+  pinMode(FIVE, OUTPUT);
+  pinMode(SIX, OUTPUT);
+  pinMode(SEVEN, OUTPUT);
+  pinMode(EIGHT, OUTPUT);
+  pinMode(NINE, OUTPUT);
+  pinMode(TEN, OUTPUT);
+  pinMode(ELEVEN, OUTPUT);
+  pinMode(Zwelve, OUTPUT);
+  pinMode(FIVE2, OUTPUT);
+  pinMode(TEN2, OUTPUT);
+  pinMode(QUARTER2, OUTPUT);
+  pinMode(TWENTY2, OUTPUT);
+  pinMode(HALF2, OUTPUT);
+  pinMode(TO, OUTPUT);
+  pinMode(PAST, OUTPUT);
   Serial.begin(115200);
 
   WiFi.begin(ssid,password);
@@ -44,9 +44,8 @@ void setup(){
 
   initTime(timeZoneString);
 
-  digitalWrite(1, HIGH); //always on this will be "IT"
-  digitalWrite(2, HIGH); //always on this will be "IS"
-  digitalWrite(3, HIGH); //always on this will be "O'CLOCK"
+  digitalWrite(IT, HIGH); //always on this will be "IT"
+  digitalWrite(IS, HIGH); //always on this will be "IS"
 }
 
 void loop() {
@@ -78,63 +77,40 @@ void loop() {
   println("~~~");
   
   switch(zHours){
-    case 1:  digitalWrite(4 , HIGH);  digitalWrite(5, LOW);digitalWrite(6, LOW);digitalWrite(7, LOW);digitalWrite(8, LOW);digitalWrite(9, LOW);digitalWrite(10, LOW);
-                                      digitalWrite(11, LOW);digitalWrite(12, LOW);digitalWrite(13, LOW); digitalWrite(14, LOW);digitalWrite(15, LOW);
-                                      break;
-    case 2:  digitalWrite(5 , HIGH);  digitalWrite(4, LOW);digitalWrite(6, LOW);digitalWrite(7, LOW);digitalWrite(8, LOW);digitalWrite(9, LOW);digitalWrite(10, LOW);
-                                      digitalWrite(11, LOW);digitalWrite(12, LOW);digitalWrite(13, LOW); digitalWrite(14, LOW);digitalWrite(15, LOW);
-                                      break;
-    case 3:  digitalWrite(6 , HIGH);  digitalWrite(4, LOW);digitalWrite(5, LOW);digitalWrite(7, LOW);digitalWrite(8, LOW);digitalWrite(9, LOW);digitalWrite(10, LOW);
-                                      digitalWrite(11, LOW);digitalWrite(12, LOW);digitalWrite(13, LOW); digitalWrite(14, LOW);digitalWrite(15, LOW);
-                                      break;
-    case 4:  digitalWrite(7 , HIGH);  digitalWrite(4, LOW);digitalWrite(5, LOW);digitalWrite(6, LOW);digitalWrite(8, LOW);digitalWrite(9, LOW);digitalWrite(10, LOW);
-                                      digitalWrite(11, LOW);digitalWrite(12, LOW);digitalWrite(13, LOW); digitalWrite(14, LOW);digitalWrite(15, LOW);
-                                      break;
-    case 5:  digitalWrite(8 , HIGH);  digitalWrite(4, LOW);digitalWrite(5, LOW);digitalWrite(6, LOW);digitalWrite(7, LOW);digitalWrite(9, LOW);digitalWrite(10, LOW);
-                                      digitalWrite(11, LOW);digitalWrite(12, LOW);digitalWrite(13, LOW); digitalWrite(14, LOW);digitalWrite(15, LOW);
-                                      break;
-    case 6:  digitalWrite(9 , HIGH);digitalWrite(4, LOW);digitalWrite(5, LOW);digitalWrite(6, LOW);digitalWrite(7, LOW);digitalWrite(8, LOW);digitalWrite(10, LOW);
-                                      digitalWrite(11, LOW);digitalWrite(12, LOW);digitalWrite(13, LOW); digitalWrite(14, LOW);digitalWrite(15, LOW);
-                                      break;
-    case 7:  digitalWrite(10, HIGH);  digitalWrite(4, LOW);digitalWrite(5, LOW);digitalWrite(6, LOW);digitalWrite(7, LOW);digitalWrite(8, LOW);digitalWrite(9, LOW);
-                                      digitalWrite(11, LOW);digitalWrite(12, LOW);digitalWrite(13, LOW); digitalWrite(14, LOW);digitalWrite(15, LOW);
-                                      break;
-    case 8:  digitalWrite(11, HIGH);  digitalWrite(4, LOW);digitalWrite(5, LOW);digitalWrite(6, LOW);digitalWrite(7, LOW);digitalWrite(8, LOW);digitalWrite(9, LOW);
-                                      digitalWrite(10, LOW);digitalWrite(12, LOW);digitalWrite(13, LOW); digitalWrite(14, LOW);digitalWrite(15, LOW);
-                                      break;
-    case 9:  digitalWrite(12, HIGH);  digitalWrite(4, LOW);digitalWrite(5, LOW);digitalWrite(6, LOW);digitalWrite(7, LOW);digitalWrite(8, LOW);digitalWrite(9, LOW);
-                                      digitalWrite(10, LOW);digitalWrite(11, LOW);digitalWrite(13, LOW); digitalWrite(14, LOW);digitalWrite(15, LOW);
-                                      break;
-    case 10: digitalWrite(13, HIGH);  digitalWrite(4, LOW);digitalWrite(5, LOW);digitalWrite(6, LOW);digitalWrite(7, LOW);digitalWrite(8, LOW);digitalWrite(9, LOW);
-                                      digitalWrite(10, LOW);digitalWrite(11, LOW);digitalWrite(12, LOW); digitalWrite(14, LOW);digitalWrite(15, LOW);
-                                      break;
-    case 11: digitalWrite(14, HIGH);  digitalWrite(4, LOW);digitalWrite(5, LOW);digitalWrite(6, LOW);digitalWrite(7, LOW);digitalWrite(8, LOW);digitalWrite(9, LOW);
-                                      digitalWrite(10, LOW);digitalWrite(11, LOW);digitalWrite(12, LOW); digitalWrite(13, LOW);digitalWrite(15, LOW);
-                                      break;
-    case 12: digitalWrite(15, HIGH);  digitalWrite(4, LOW);digitalWrite(5, LOW);digitalWrite(6, LOW);digitalWrite(7, LOW);digitalWrite(8, LOW);digitalWrite(9, LOW);
-                                      digitalWrite(10, LOW);digitalWrite(11, LOW);digitalWrite(12, LOW); digitalWrite(13, LOW);digitalWrite(14, LOW);
-                                      break;
+    case 1: digitalWrite(ONE,HIGH); digitalWrite(TWO, LOW); digitalWrite(THREE, LOW); digitalWrite(FOUR, LOW); digitalWrite(FIVE, LOW); digitalWrite(SIX, LOW); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT, LOW); digitalWrite(NINE, LOW); digitalWrite(TEN, LOW); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE, LOW); break;
+    case 2: digitalWrite(ONE, LOW); digitalWrite(TWO,HIGH); digitalWrite(THREE, LOW); digitalWrite(FOUR, LOW); digitalWrite(FIVE, LOW); digitalWrite(SIX, LOW); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT, LOW); digitalWrite(NINE, LOW); digitalWrite(TEN, LOW); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE, LOW); break;
+    case 3: digitalWrite(ONE, LOW); digitalWrite(TWO, LOW); digitalWrite(THREE,HIGH); digitalWrite(FOUR, LOW); digitalWrite(FIVE, LOW); digitalWrite(SIX, LOW); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT, LOW); digitalWrite(NINE, LOW); digitalWrite(TEN, LOW); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE, LOW); break;
+    case 4: digitalWrite(ONE, LOW); digitalWrite(TWO, LOW); digitalWrite(THREE, LOW); digitalWrite(FOUR,HIGH); digitalWrite(FIVE, LOW); digitalWrite(SIX, LOW); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT, LOW); digitalWrite(NINE, LOW); digitalWrite(TEN, LOW); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE, LOW); break;
+    case 5: digitalWrite(ONE, LOW); digitalWrite(TWO, LOW); digitalWrite(THREE, LOW); digitalWrite(FOUR, LOW); digitalWrite(FIVE,HIGH); digitalWrite(SIX, LOW); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT, LOW); digitalWrite(NINE, LOW); digitalWrite(TEN, LOW); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE, LOW); break;
+    case 6: digitalWrite(ONE, LOW); digitalWrite(TWO, LOW); digitalWrite(THREE, LOW); digitalWrite(FOUR, LOW); digitalWrite(FIVE, LOW); digitalWrite(SIX,HIGH); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT, LOW); digitalWrite(NINE, LOW); digitalWrite(TEN, LOW); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE, LOW); break;
+    case 7: digitalWrite(ONE, LOW); digitalWrite(TWO, LOW); digitalWrite(THREE, LOW); digitalWrite(FOUR, LOW); digitalWrite(FIVE, LOW); digitalWrite(SIX, LOW); digitalWrite(SEVEN,HIGH); digitalWrite(EIGHT, LOW); digitalWrite(NINE, LOW); digitalWrite(TEN, LOW); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE, LOW); break;
+    case 8: digitalWrite(ONE, LOW); digitalWrite(TWO, LOW); digitalWrite(THREE, LOW); digitalWrite(FOUR, LOW); digitalWrite(FIVE, LOW); digitalWrite(SIX, LOW); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT,HIGH); digitalWrite(NINE, LOW); digitalWrite(TEN, LOW); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE, LOW); break;
+    case 9: digitalWrite(ONE, LOW); digitalWrite(TWO, LOW); digitalWrite(THREE, LOW); digitalWrite(FOUR, LOW); digitalWrite(FIVE, LOW); digitalWrite(SIX, LOW); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT, LOW); digitalWrite(NINE,HIGH); digitalWrite(TEN, LOW); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE, LOW); break;
+    case 10:digitalWrite(ONE, LOW); digitalWrite(TWO, LOW); digitalWrite(THREE, LOW); digitalWrite(FOUR, LOW); digitalWrite(FIVE, LOW); digitalWrite(SIX, LOW); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT, LOW); digitalWrite(NINE, LOW); digitalWrite(TEN,HIGH); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE, LOW); break;
+    case 11:digitalWrite(ONE, LOW); digitalWrite(TWO, LOW); digitalWrite(THREE, LOW); digitalWrite(FOUR, LOW); digitalWrite(FIVE, LOW); digitalWrite(SIX, LOW); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT, LOW); digitalWrite(NINE, LOW); digitalWrite(TEN, LOW); digitalWrite(ELEVEN,HIGH); digitalWrite(TWELVE, LOW); break;
+    case 12:digitalWrite(ONE, LOW); digitalWrite(TWO, LOW); digitalWrite(THREE, LOW); digitalWrite(FOUR, LOW); digitalWrite(FIVE, LOW); digitalWrite(SIX, LOW); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT, LOW); digitalWrite(NINE, LOW); digitalWrite(TEN, LOW); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE,HIGH); break;
+    default:digitalWrite(ONE, LOW); digitalWrite(TWO, LOW); digitalWrite(THREE, LOW); digitalWrite(FOUR, LOW); digitalWrite(FIVE, LOW); digitalWrite(SIX, LOW); digitalWrite(SEVEN, LOW); digitalWrite(EIGHT, LOW); digitalWrite(NINE, LOW); digitalWrite(TEN, LOW); digitalWrite(ELEVEN, LOW); digitalWrite(TWELVE, LOW); break;
   }
 
   switch(zMinutes){
-    case 0 ... 4:     digitalWrite(21,LOW); digitalWrite(33,LOW); break; //display nothing 
-    case 5 ... 29:    digitalWrite(33,HIGH);digitalWrite(21,LOW); break; //dispaly is past 
-    case 30 ... 39:   digitalWrite(21,LOW); digitalWrite(33,LOW); break; //display nothing 
-    case 40 ... 60:   digitalWrite(21,HIGH);digitalWrite(33,LOW); break; //display is to
-    default:          digitalWrite(21,LOW); digitalWrite(33,LOW); break; //display nothing  
+    case 0 ... 4:     digitalWrite(TO, LOW);  digitalWrite(PAST, LOW);  digitalWrite(CLOCK,HIGH); break; //display "O'CLOCK"
+    case 5 ... 29:    digitalWrite(TO, LOW);  digitalWrite(PAST,HIGH);  digitalWrite(CLOCK, LOW); break; //dispaly is past 
+    case 30 ... 39:   digitalWrite(TO, LOW);  digitalWrite(PAST, LOW);  digitalWrite(CLOCK, LOW); break; //display nothing 
+    case 40 ... 60:   digitalWrite(TO,HIGH);  digitalWrite(PAST, LOW);  digitalWrite(CLOCK, LOW); break; //display is to
+    default:          digitalWrite(TO, LOW);  digitalWrite(PAST, LOW);  digitalWrite(CLOCK, LOW); break; //display nothing  
   }
 
   switch(zMinutes){
-    case 0 ... 4:   digitalWrite(16,LOW); digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
-    case 5 ... 9:   digitalWrite(16,HIGH);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
-    case 10 ... 14: digitalWrite(17,HIGH);digitalWrite(16,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
-    case 15 ... 19: digitalWrite(18,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
-    case 20 ... 29: digitalWrite(19,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(20,LOW); break;
-    case 30 ... 39: digitalWrite(20,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW); break;
-    case 40 ... 44: digitalWrite(19,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(20,LOW); break;
-    case 45 ... 49: digitalWrite(18,HIGH);digitalWrite(16,LOW);digitalWrite(17,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
-    case 50 ... 54: digitalWrite(17,HIGH);digitalWrite(16,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
-    default:        digitalWrite(16,LOW); digitalWrite(17,LOW);digitalWrite(18,LOW);digitalWrite(19,LOW);digitalWrite(20,LOW); break;
+    case 0 ... 4:   digitalWrite(FIVE2, LOW);  digitalWrite(TEN2, LOW);  digitalWrite(QUARTER2, LOW);  digitalWrite(TWENTY2, LOW);  digitalWrite(HALF2, LOW); break;
+    case 5 ... 9:   digitalWrite(FIVE2,HIGH);  digitalWrite(TEN2, LOW);  digitalWrite(QUARTER2, LOW);  digitalWrite(TWENTY2, LOW);  digitalWrite(HALF2, LOW); break;
+    case 10 ... 14: digitalWrite(FIVE2, LOW);  digitalWrite(TEN2,HIGH);  digitalWrite(QUARTER2, LOW);  digitalWrite(TWENTY2, LOW);  digitalWrite(HALF2, LOW); break;
+    case 15 ... 19: digitalWrite(FIVE2, LOW);  digitalWrite(TEN2, LOW);  digitalWrite(QUARTER2,HIGH);  digitalWrite(TWENTY2, LOW);  digitalWrite(HALF2, LOW); break;
+    case 20 ... 29: digitalWrite(FIVE2, LOW);  digitalWrite(TEN2, LOW);  digitalWrite(QUARTER2, LOW);  digitalWrite(TWENTY2,HIGH);  digitalWrite(HALF2, LOW); break;
+    case 30 ... 39: digitalWrite(FIVE2, LOW);  digitalWrite(TEN2, LOW);  digitalWrite(QUARTER2, LOW);  digitalWrite(TWENTY2, LOW);  digitalWrite(HALF2,HIGH); break;
+    case 40 ... 44: digitalWrite(FIVE2, LOW);  digitalWrite(TEN2, LOW);  digitalWrite(QUARTER2, LOW);  digitalWrite(TWENTY2,HIGH);  digitalWrite(HALF2, LOW); break;
+    case 45 ... 49: digitalWrite(FIVE2, LOW);  digitalWrite(TEN2, LOW);  digitalWrite(QUARTER2,HIGH);  digitalWrite(TWENTY2, LOW);  digitalWrite(HALF2, LOW); break;
+    case 50 ... 54: digitalWrite(FIVE2, LOW);  digitalWrite(TEN2,HIGH);  digitalWrite(QUARTER2, LOW);  digitalWrite(TWENTY2, LOW);  digitalWrite(HALF2, LOW); break;
+    default:        digitalWrite(FIVE2, LOW);  digitalWrite(TEN2, LOW);  digitalWrite(QUARTER2, LOW);  digitalWrite(TWENTY2, LOW);  digitalWrite(HALF2, LOW); break;
   }
 
   print("delay:");
