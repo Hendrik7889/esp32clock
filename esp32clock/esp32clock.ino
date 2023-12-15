@@ -23,7 +23,7 @@ void setup(){
   pinMode(NINE, OUTPUT);
   pinMode(TEN, OUTPUT);
   pinMode(ELEVEN, OUTPUT);
-  pinMode(Zwelve, OUTPUT);
+  pinMode(TWELVE, OUTPUT);
   pinMode(FIVE2, OUTPUT);
   pinMode(TEN2, OUTPUT);
   pinMode(QUARTER2, OUTPUT);
