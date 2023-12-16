@@ -8,17 +8,17 @@ This project implements a text-based clock on the ESP32S2 microcontroller using 
 
 ## Features
 
-- Real-time clock (RTC) synchronization for accurate timekeeping.
+- Real-time clock synchronization for accurate timekeeping.
+- daylight saving time
 - Easily configurable through the Arduino IDE 2.
 
 ## Hardware Requirements
 
 - ESP32 microcontroller.
 - Appropriate power supply for the ESP32.
-- Leds (at least 22)
-- Breadboard
-- Resistors (at least 22)
-- The wallmount is custom
+- Leds
+- Resistors
+- wallmount and panel are custom
 - USB-to-Serial converter (for initial setup and debugging).
 
 if you bought a non developer esp32 you might need a USB to TTL Serial Adapter Module.
@@ -41,16 +41,14 @@ if you bought a non developer esp32 you might need a USB to TTL Serial Adapter M
    - Open the Arduino IDE 2.
    - Load the provided sketch (`.ino` file) into the IDE.
    - Configure the clock settings in the config.h file.
-
-     ![Find your code here](https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv)
+   - set daslight saving time with the database ![here](https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv)
 
 4. **Configure the Panel**
   
-   - ![Panel-English](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/IO-Ports-English.png) ![Panel-German](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/IO-Ports-German.png)
-  
-   - Automaticly generate your custom panel with this amazing project [https://github.com/im-pro-at/WordClockGenerator](https://github.com/im-pro-at/WordClockGenerator)
+   - ![Panel-layout-English](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/IO-Ports-English.png) / ![Panel-layout-German](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/IO-Ports-German.png)
 
-     (not automated) you might need to change code in ![esp32.ino](https://github.com/Hendrik7889/esp32clock/blob/main/esp32clock/esp32clock.ino)
+      ![Panel-file-German](https://github.com/Hendrik7889/esp32clock/blob/main/panel/panel.dxf)
+   - ![Wallmount-file](https://github.com/Hendrik7889/esp32clock/blob/main/wallmount/wallmount.3mf)
 
 5. **Upload and Run**
 
