@@ -2,8 +2,8 @@
   @param ssid is your WIFI name
   @param password is your wifi password
   */
-extern const char* ssid = "ssid";
-extern const char* password = "password";
+extern const char* ssid = "MagentaWLAN-2ICS";
+extern const char* password = "46647149513671879811";
 
 /**
   Option for debugging
