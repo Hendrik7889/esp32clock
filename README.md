@@ -47,7 +47,7 @@ if you bought a non developer esp32 you might need a USB to TTL Serial Adapter M
   
    - ![Panel-layout-English](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/IO-Ports-English.png) / ![Panel-layout-German](https://github.com/Hendrik7889/esp32clock/tree/main/design-and-ports/IO-Ports-German.png)
 
-      ![Panel-file-German](https://github.com/Hendrik7889/esp32clock/blob/main/panel/panel.dxf)
+      ![Panel-file-German](https://github.com/Hendrik7889/esp32clock/blob/main/panel/)
    - ![Wallmount-file](https://github.com/Hendrik7889/esp32clock/blob/main/wallmount/wallmount.3mf)
 
 5. **Upload and Run**
